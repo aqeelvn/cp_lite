@@ -1,0 +1,14 @@
+<h1><%= @recipe.title %></h1>
+
+<% if @recipe.description.present? %>
+  <p><%= @recipe.description %></p>
+<% end %>
+
+<%= link_to @recipe.username, @recipe.user %>
+
+<% if current_user.owns? @recipe %>
+  <div>
+    <%= link_to t(".edit"), edit_recipe_path(@recipe) %>
+    <%= link_to t(".delete"), @recipe, method: :delete, data: { confirm: t(".confirm_delete") } %>
+  </div>
+<% end %>

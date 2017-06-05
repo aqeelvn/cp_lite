@@ -1,0 +1,18 @@
+en:
+  sign_up: "Sign up"
+  sign_out: "Sign out"
+  sign_in: "Sign in"
+  home: "Home"
+  recipes:
+    show:
+      confirm_delete: "Confirm delete?"
+  users:
+    show:
+      users_recipes: "%{username}'s recipes"
+  helpers:
+    submit:
+      recipe:
+        create: "Create recipe"
+  homes:
+    show:
+      create_recipe: "Create recipe"

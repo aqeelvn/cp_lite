@@ -1,0 +1,12 @@
+<header>
+  <nav>
+    <% if signed_in? %>
+      <%= link_to t("home"), root_path %>
+      <%= link_to current_user.username, current_user %>
+      <%= link_to t("sign_out"), session_path, method: :delete %>
+    <% else %>
+      <%= link_to t("sign_up"), new_user_path %>
+      <%= link_to t("sign_in"), new_session_path %>
+    <% end %>
+  </nav>
+</header>
