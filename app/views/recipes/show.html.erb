@@ -8,7 +8,7 @@
 
 <% if current_user.owns? @recipe %>
   <div>
-    <%= link_to t(".edit"), edit_recipe_path(@recipe) %>
-    <%= link_to t(".delete"), @recipe, method: :delete, data: { confirm: t(".confirm_delete") } %>
+    <%= link_to t(".edit"), edit_my_recipe_path(@recipe) %>
+    <%= link_to t(".delete"), [:my, @recipe], method: :delete, data: { confirm: t(".confirm_delete") } %>
   </div>
 <% end %>
