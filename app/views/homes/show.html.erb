@@ -1,1 +1,4 @@
 <%= link_to t(".create_recipe"), new_my_recipe_path %>
+
+<%= render @recipes %>
+<%= paginate @recipes %>

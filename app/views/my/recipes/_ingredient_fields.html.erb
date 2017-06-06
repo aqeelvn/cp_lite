@@ -1,0 +1,6 @@
+<div>
+  <%= form.label :name %>
+  <%= form.text_field :name %>
+  <%= form.hidden_field :_destroy, value:"0" %>
+  <%= link_to t(".remove"), "#", data: {role: "remove-nested"} %>
+</div>

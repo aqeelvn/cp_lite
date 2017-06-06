@@ -11,5 +11,21 @@
 // about supported directives.
 //
 //= require rails-ujs
+//= require jquery
 //= require turbolinks
 //= require_tree .
+
+$(function(){
+  $(document).on("click", "[data-role=add-nested]", function(event){
+    var date = new Date().getTime();
+    var template = $(this).data("template").replace(/__ID__/g, date);
+    $(this).before(template);
+    event.preventDefault();
+  });
+
+  $(document).on("click", "[data-role=remove-nested]", function(event){
+    $(this).prev("input[type=hidden]").val("1");
+    $(this).parent().hide();
+    event.preventDefault();
+  });
+});
