@@ -15,6 +15,14 @@
     <%= link_to_add_nested t(".add_ingredient"), form, :ingredients %>
   </fieldset>
 
+  <fieldset>
+    <legend>Steps</legend>
+    <%= form.fields_for(:steps) do |steps_form| %>
+      <%= render "step_fields", form:steps_form %>
+    <% end %>
+    <%= link_to_add_nested t(".add_step"), form, :steps %>
+  </fieldset>
+
   <div>
     <%= form.submit %>
   </div>

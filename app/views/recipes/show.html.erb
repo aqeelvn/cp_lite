@@ -4,11 +4,11 @@
   <p><%= @recipe.description %></p>
 <% end %>
 
+<%= render "ingredients", recipe:@recipe %>
+<%= render "steps", recipe:@recipe %>
+
 <%= link_to @recipe.username, @recipe.user %>
 
 <% if current_user.owns? @recipe %>
-  <div>
-    <%= link_to t(".edit"), edit_my_recipe_path(@recipe) %>
-    <%= link_to t(".delete"), [:my, @recipe], method: :delete, data: { confirm: t(".confirm_delete") } %>
-  </div>
+  <%= render "controls", recipe: @recipe %>
 <% end %>

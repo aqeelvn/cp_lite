@@ -11,7 +11,7 @@ class My::RecipesController < My::BaseController
   end
 
   def new
-    @recipe = Recipe.new(ingredients:[Ingredient.new])
+    @recipe = Recipe.new(ingredients:[Ingredient.new], steps:[Step.new])
   end
 
   def create
@@ -36,7 +36,8 @@ class My::RecipesController < My::BaseController
     permit(
       :title,
       :description,
-      ingredients_attributes: [:name, :id, :_destroy]
+      ingredients_attributes: [:name, :id, :_destroy],
+      steps_attributes: [:description, :id, :_destroy]
     )
   end
 end
