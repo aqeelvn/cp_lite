@@ -6,6 +6,8 @@ en:
   unfollow: "Unfollow"
   like: "Like"
   unlike: "Unlike"
+  bookmark: "Bookmark"
+  remove_bookmark: "Remove bookmark"
   home: "Home"
   my:
     recipes:

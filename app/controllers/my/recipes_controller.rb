@@ -15,8 +15,12 @@ class My::RecipesController < My::BaseController
   end
 
   def create
-    recipe = current_user.recipes.create(recipe_params)
-    redirect_to recipe
+    @recipe = current_user.recipes.build(recipe_params)
+    if @recipe.save
+      redirect_to @recipe
+    else
+      render :edit
+    end
   end
 
   def update

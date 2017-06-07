@@ -1,4 +1,5 @@
 class FollowsController < ApplicationController
+  before_action :require_login
   def create
     current_user.follow(user_to_follow)
     redirect_to user_to_follow

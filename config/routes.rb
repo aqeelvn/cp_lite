@@ -5,6 +5,11 @@ Rails.application.routes.draw do
       post "like" => "likes#create"
       post "unlike" => "likes#destroy"
     end
+
+    member do
+      post "bookmark" => "bookmarks#create"
+      post "remove_bookmark" => "bookmarks#destroy"
+    end
   end
   resource :session, only: %i(new create destroy)
   resources :users, only: [:new, :create, :show] do

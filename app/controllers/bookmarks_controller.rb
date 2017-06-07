@@ -1,13 +1,11 @@
-class LikesController < ApplicationController
-  before_action :require_login
-
+class BookmarksController < ApplicationController
   def create
-    current_user.like(recipe)
+    current_user.bookmark(recipe)
     redirect_to recipe
   end
 
   def destroy
-    current_user.unlike(recipe)
+    current_user.remove_bookmark(recipe)
     redirect_to recipe
   end
 
