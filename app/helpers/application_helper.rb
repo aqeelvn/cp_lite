@@ -1,4 +1,12 @@
 module ApplicationHelper
+  def follow_button(user)
+    if current_user.follows?(user)
+      button_to t("unfollow"), [:unfollow, user]
+    else
+      button_to t("follow"), [:follow, user]
+    end
+  end
+
   def link_to_add_nested(text, form, association)
     singulare_name = association.to_s.singularize
     object = form.object.public_send(association).build

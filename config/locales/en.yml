@@ -2,14 +2,16 @@ en:
   sign_up: "Sign up"
   sign_out: "Sign out"
   sign_in: "Sign in"
+  follow: "Follow"
+  unfollow: "Unfollow"
   home: "Home"
   my:
     recipes:
       form:
         add_ingredient: "Add ingredient"
   recipes:
-    show:
-      confirm_delete: "Confirm delete?"
+    controls:
+      confirm_delete: "Are you sure you want to delete the recipe?"
   users:
     show:
       users_recipes: "%{username}'s recipes"
