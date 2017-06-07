@@ -1,6 +1,9 @@
 <h2>Comments</h2>
 <ul>
   <% comments.each do |comment| %>
-    <li><%= comment.text %></li>
+    <li>
+      <span><%= comment.text %></span>
+      <%= link_to t(".remove_comment"), comment, method: :delete %>
+    </li>
   <% end %>
 </ul>

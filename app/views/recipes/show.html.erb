@@ -14,13 +14,7 @@
 <%= render "steps", recipe:@recipe %>
 <%= render "comments", comments:@comments %>
 
-<%= form_for [@recipe, Comment.new] do |form| %>
-  <%= form.label :text %>
-  <%= form.text_area :text %>
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+<%= render "comment_form", recipe: @recipe %>
 
 <% if current_user.owns? @recipe %>
   <%= render "controls", recipe: @recipe %>

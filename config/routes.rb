@@ -15,6 +15,8 @@ Rails.application.routes.draw do
     resources :comments, only: %i(create)
   end
 
+  resources :comments, only: %i(destroy)
+
   resource :session, only: %i(new create destroy)
 
   resources :users, only: [:new, :create, :show] do

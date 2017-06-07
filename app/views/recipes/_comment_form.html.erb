@@ -1,0 +1,7 @@
+<%= form_for [recipe, Comment.new] do |form| %>
+  <%= form.label :text %>
+  <%= form.text_area :text %>
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

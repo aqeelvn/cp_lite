@@ -14,6 +14,8 @@ en:
       form:
         add_ingredient: "Add ingredient"
   recipes:
+    comments:
+      remove_comment: "Delete"
     controls:
       confirm_delete: "Are you sure you want to delete the recipe?"
   users:
@@ -23,6 +25,8 @@ en:
     submit:
       recipe:
         create: "Create recipe"
+      comment:
+        create: "Submit"
   homes:
     show:
       create_recipe: "Create recipe"
