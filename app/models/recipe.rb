@@ -20,5 +20,4 @@ class Recipe < ApplicationRecord
   delegate :username, to: :user
 
   scope :latest, -> { order(created_at: :desc) }
-
 end

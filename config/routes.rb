@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   root to: "homes#show"
-  resources :recipes, only: %i(show)
+  resources :recipes, only: %i(show) do
+    member do
+      post "like" => "likes#create"
+      post "unlike" => "likes#destroy"
+    end
+  end
   resource :session, only: %i(new create destroy)
   resources :users, only: [:new, :create, :show] do
     member do

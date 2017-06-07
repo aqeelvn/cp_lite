@@ -1,5 +1,7 @@
 <h1><%= @recipe.title %></h1>
 
+<%= like_button @recipe %>
+
 <% if @recipe.description.present? %>
   <p><%= @recipe.description %></p>
 <% end %>

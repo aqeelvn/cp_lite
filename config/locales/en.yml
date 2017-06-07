@@ -4,6 +4,8 @@ en:
   sign_in: "Sign in"
   follow: "Follow"
   unfollow: "Unfollow"
+  like: "Like"
+  unlike: "Unlike"
   home: "Home"
   my:
     recipes:

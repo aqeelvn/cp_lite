@@ -14,6 +14,9 @@ class User < ActiveRecord::Base
     class_name: "Follow"
   has_many :followers, through: :follower_relationships
 
+  has_many :likes, class_name: "Like"
+  has_many :liked_recipes, through: :likes, source: :recipe
+
   def owns?(object)
     object.user_id == id
   end
@@ -30,5 +33,17 @@ class User < ActiveRecord::Base
 
   def unfollow(user)
     followed_users.delete(user)
+  end
+
+  def like(recipe)
+    liked_recipes << recipe
+  end
+
+  def liked?(recipe)
+    liked_recipes.include?(recipe)
+  end
+
+  def unlike(recipe)
+    liked_recipes.delete(recipe)
   end
 end
