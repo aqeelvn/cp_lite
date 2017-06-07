@@ -7,7 +7,11 @@ class Guest
     false
   end
 
-  def follows?()
+  def follows?(_)
+    false
+  end
+
+  def bookmarked?(_)
     false
   end
 end
