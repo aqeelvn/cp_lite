@@ -1,5 +1,7 @@
 <h1><%= @recipe.title %></h1>
 
+<%= link_to @recipe.username, @recipe.user %>
+
 <%= like_button @recipe %>
 
 <%= bookmark_button @recipe %>
@@ -10,8 +12,15 @@
 
 <%= render "ingredients", recipe:@recipe %>
 <%= render "steps", recipe:@recipe %>
+<%= render "comments", comments:@comments %>
 
-<%= link_to @recipe.username, @recipe.user %>
+<%= form_for [@recipe, Comment.new] do |form| %>
+  <%= form.label :text %>
+  <%= form.text_area :text %>
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
 
 <% if current_user.owns? @recipe %>
   <%= render "controls", recipe: @recipe %>
