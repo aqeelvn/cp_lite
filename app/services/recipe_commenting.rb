@@ -18,7 +18,7 @@ class RecipeCommenting
   attr_reader :user, :recipe, :text
 
   def create_comment
-    recipe.comments.create({:user => user, :text => text})
+    recipe.comments.create({user: user, text: text})
   end
 
   def publish_activity(comment)

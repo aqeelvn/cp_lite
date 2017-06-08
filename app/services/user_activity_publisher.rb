@@ -26,7 +26,8 @@ class UserActivityPublisher
   ACTIVITY_MAP = {
     bookmark: BookmarkActivity,
     like: LikeActivity,
-    comment: CommentActivity
+    comment: CommentActivity,
+    recipe_publish: RecipePublishActivity
   }.freeze
 
   private_constant :ACTIVITY_MAP

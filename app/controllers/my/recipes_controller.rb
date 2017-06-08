@@ -15,8 +15,8 @@ class My::RecipesController < My::BaseController
   end
 
   def create
-    @recipe = current_user.recipes.build(recipe_params)
-    if @recipe.save
+    @recipe = RecipeCreate.new(user: current_user, recipe_params: recipe_params).run
+    if @recipe.persisted?
       redirect_to @recipe
     else
       render :edit

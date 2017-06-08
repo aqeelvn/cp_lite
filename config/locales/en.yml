@@ -22,6 +22,10 @@ en:
     comment_activity:
       commented: "commented \"%{text}\" on"
 
+  recipe_publish_activities:
+    recipe_publish_activity:
+      published_recipe: "published a recipe "
+
   my:
     recipes:
       form:
