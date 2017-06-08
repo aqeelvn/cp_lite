@@ -9,6 +9,9 @@ en:
   bookmark: "Bookmark"
   remove_bookmark: "Remove bookmark"
   home: "Home"
+  user_activities:
+    bookmark_activity:
+      bookmarked: "Bookmarked"
   my:
     recipes:
       form:

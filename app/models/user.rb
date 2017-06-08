@@ -54,8 +54,9 @@ class User < ActiveRecord::Base
   end
 
   def bookmark(recipe)
-    #bookmarked_recipes << recipe
-    bookmarks.create(recipe:recipe)
+    bookmarks.find_or_create_by(recipe:recipe)
+  rescue ActiveRecord::RecordNotUnique
+    retry
   end
 
   def bookmarked?(recipe)

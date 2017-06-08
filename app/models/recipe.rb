@@ -10,6 +10,8 @@ class Recipe < ApplicationRecord
   has_many :steps, dependent: :destroy
 
   has_many :comments, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy
+  has_many :user_activities, as: :target, dependent: :destroy
 
   accepts_nested_attributes_for :ingredients,
     allow_destroy: true,

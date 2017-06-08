@@ -6,18 +6,38 @@ class UserActivityPublisher
   end
 
   def run
-    activity = create_activity
-    publish_activity(activity)
+    return if user.followers.none?
+
+    activity = get_activity
+
+    if activity.new_record?
+      begin
+        activity.save
+      rescue ActiveRecord::RecordNotUnique
+        return
+      end
+
+      publish_activity(activity)
+    end
   end
 
   private
 
+  ACTIVITY_MAP = {
+    bookmark: BookmarkActivity
+  }.freeze
+
+  private_constant :ACTIVITY_MAP
+
   attr_reader :user, :target, :action
 
-  def create_activity
-    UserActivity.create(
+  def activity_class
+    ACTIVITY_MAP.fetch(action.to_sym)
+  end
+
+  def get_activity
+    activity_class.find_or_initialize_by(
       user: user,
-      action: action,
       target: target
     )
   end

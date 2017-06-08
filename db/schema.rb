@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170608022312) do
+ActiveRecord::Schema.define(version: 20170608053413) do
 
   create_table "bookmarks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "user_id"
@@ -89,12 +89,13 @@ ActiveRecord::Schema.define(version: 20170608022312) do
 
   create_table "user_activities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "user_id"
-    t.string "action", null: false
+    t.string "type", null: false
     t.string "target_type"
     t.bigint "target_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["target_type", "target_id"], name: "index_user_activities_on_target_type_and_target_id"
+    t.index ["user_id", "type", "target_type", "target_id"], name: "index_user_activities_on_user_and_type_and_target", unique: true
     t.index ["user_id"], name: "index_user_activities_on_user_id"
   end
 
