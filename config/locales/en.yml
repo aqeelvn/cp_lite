@@ -9,27 +9,37 @@ en:
   bookmark: "Bookmark"
   remove_bookmark: "Remove bookmark"
   home: "Home"
-  user_activities:
+
+  bookmark_activities:
     bookmark_activity:
-      bookmarked: "Bookmarked"
+      bookmarked: "bookmarked"
+
+  like_activities:
+    like_activity:
+      liked: "liked"
+
   my:
     recipes:
       form:
         add_ingredient: "Add ingredient"
+
   recipes:
     comments:
       remove_comment: "Delete"
     controls:
       confirm_delete: "Are you sure you want to delete the recipe?"
+
   users:
     show:
       users_recipes: "%{username}'s recipes"
+
   helpers:
     submit:
       recipe:
         create: "Create recipe"
       comment:
         create: "Submit"
+
   homes:
     show:
       create_recipe: "Create recipe"
