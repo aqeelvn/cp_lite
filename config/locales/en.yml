@@ -18,6 +18,10 @@ en:
     like_activity:
       liked: "liked"
 
+  comment_activities:
+    comment_activity:
+      commented: "commented \"%{text}\" on"
+
   my:
     recipes:
       form:

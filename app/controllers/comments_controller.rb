@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
   before_action :require_login
 
   def create
-    recipe.comments.create(comment_params)
+    RecipeCommenting.new(user: current_user, recipe:recipe, text: params.require(:comment)[:text]).run
     redirect_to recipe
   end
 
@@ -19,7 +19,7 @@ class CommentsController < ApplicationController
   end
 
   def recipe
-    Recipe.find(params[:recipe_id])
+    @recipe ||= Recipe.find(params[:recipe_id])
   end
 
   def comment_params
