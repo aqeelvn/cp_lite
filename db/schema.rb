@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170607092638) do
+ActiveRecord::Schema.define(version: 20170608022312) do
 
   create_table "bookmarks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "user_id"
@@ -30,6 +30,16 @@ ActiveRecord::Schema.define(version: 20170607092638) do
     t.datetime "updated_at", null: false
     t.index ["recipe_id"], name: "index_comments_on_recipe_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "feed_items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "user_id"
+    t.bigint "user_activity_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_activity_id"], name: "index_feed_items_on_user_activity_id"
+    t.index ["user_id", "user_activity_id"], name: "index_feed_items_on_user_id_and_user_activity_id", unique: true
+    t.index ["user_id"], name: "index_feed_items_on_user_id"
   end
 
   create_table "follows", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -77,6 +87,17 @@ ActiveRecord::Schema.define(version: 20170607092638) do
     t.index ["recipe_id"], name: "index_steps_on_recipe_id"
   end
 
+  create_table "user_activities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "user_id"
+    t.string "action", null: false
+    t.string "target_type"
+    t.bigint "target_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["target_type", "target_id"], name: "index_user_activities_on_target_type_and_target_id"
+    t.index ["user_id"], name: "index_user_activities_on_user_id"
+  end
+
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "email", null: false
     t.string "password_digest", null: false
@@ -91,9 +112,12 @@ ActiveRecord::Schema.define(version: 20170607092638) do
   add_foreign_key "bookmarks", "users"
   add_foreign_key "comments", "recipes"
   add_foreign_key "comments", "users"
+  add_foreign_key "feed_items", "user_activities"
+  add_foreign_key "feed_items", "users"
   add_foreign_key "follows", "users", column: "followed_user_id"
   add_foreign_key "follows", "users", column: "follower_id"
   add_foreign_key "ingredients", "recipes"
   add_foreign_key "recipes", "users"
   add_foreign_key "steps", "recipes"
+  add_foreign_key "user_activities", "users"
 end

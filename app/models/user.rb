@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   validates :password_digest, presence: true
   validates :username, presence: true, uniqueness: true
 
+  has_many :feed_items, dependent: :destroy
   has_many :recipes, dependent: :destroy
   has_many :followed_user_relationships,
     foreign_key: :follower_id,
@@ -53,7 +54,8 @@ class User < ActiveRecord::Base
   end
 
   def bookmark(recipe)
-    bookmarked_recipes << recipe
+    #bookmarked_recipes << recipe
+    bookmarks.create(recipe:recipe)
   end
 
   def bookmarked?(recipe)
