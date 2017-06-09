@@ -41,12 +41,17 @@ en:
     show:
       users_recipes: "%{username}'s recipes"
 
+  searches:
+    search_form:
+      search_here: "Search here"
+
   helpers:
     submit:
       recipe:
         create: "Create recipe"
       comment:
         create: "Submit"
+      search_form: "Search"
 
   homes:
     show:

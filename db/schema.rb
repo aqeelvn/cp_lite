@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170608053413) do
+ActiveRecord::Schema.define(version: 20170609061500) do
 
   create_table "bookmarks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "user_id"
@@ -76,7 +76,19 @@ ActiveRecord::Schema.define(version: 20170608053413) do
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "cover_image_file_name"
+    t.string "cover_image_content_type"
+    t.integer "cover_image_file_size"
+    t.datetime "cover_image_updated_at"
     t.index ["user_id"], name: "index_recipes_on_user_id"
+  end
+
+  create_table "search_indices", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "recipe_id"
+    t.text "index", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["recipe_id"], name: "index_search_indices_on_recipe_id", unique: true
   end
 
   create_table "steps", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -119,6 +131,7 @@ ActiveRecord::Schema.define(version: 20170608053413) do
   add_foreign_key "follows", "users", column: "follower_id"
   add_foreign_key "ingredients", "recipes"
   add_foreign_key "recipes", "users"
+  add_foreign_key "search_indices", "recipes"
   add_foreign_key "steps", "recipes"
   add_foreign_key "user_activities", "users"
 end

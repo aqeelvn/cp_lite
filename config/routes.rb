@@ -10,6 +10,8 @@ Rails.application.routes.draw do
     root to: "dashboards#show"
   end
 
+  resource :search, only: %i(show)
+
   resources :recipes, only: %i(show) do
     member do
       post "like" => "likes#create"

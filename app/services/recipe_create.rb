@@ -9,6 +9,7 @@ class RecipeCreate
 
     if recipe.persisted?
       publish_activity(recipe)
+      build_search_index(recipe)
     end
 
     recipe
@@ -24,5 +25,9 @@ class RecipeCreate
 
   def publish_activity(recipe)
     UserActivityPublisher.new(user:user, target: recipe, action: "recipe_publish").run
+  end
+
+  def build_search_index(recipe)
+    RecipeIndexer.new(recipe).run
   end
 end

@@ -1,5 +1,7 @@
 <h1><%= @recipe.title %></h1>
 
+<%= image_tag @recipe.cover_image.url(:large) %>
+
 <%= link_to @recipe.username, @recipe.user %>
 
 <%= like_button @recipe %>

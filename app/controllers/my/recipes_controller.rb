@@ -16,6 +16,7 @@ class My::RecipesController < My::BaseController
 
   def create
     @recipe = RecipeCreate.new(user: current_user, recipe_params: recipe_params).run
+
     if @recipe.persisted?
       redirect_to @recipe
     else
@@ -25,7 +26,7 @@ class My::RecipesController < My::BaseController
 
   def update
     recipe = find_recipe
-    recipe.update_attributes(recipe_params)
+    RecipeUpdate.new(recipe: recipe, recipe_params: recipe_params).run
     redirect_to recipe
   end
 
@@ -40,6 +41,7 @@ class My::RecipesController < My::BaseController
     permit(
       :title,
       :description,
+      :cover_image,
       ingredients_attributes: [:name, :id, :_destroy],
       steps_attributes: [:description, :id, :_destroy]
     )

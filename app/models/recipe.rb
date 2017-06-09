@@ -13,6 +13,11 @@ class Recipe < ApplicationRecord
   has_many :bookmarks, dependent: :destroy
   has_many :user_activities, as: :target, dependent: :destroy
 
+  has_one :search_index, dependent: :destroy
+
+  has_attached_file :cover_image, styles: { large:"1024x1024", medium: "300x300>", thumb: "100x100>" }, default_url: ""
+  validates_attachment_content_type :cover_image, content_type: /\Aimage\/.*\z/
+
   accepts_nested_attributes_for :ingredients,
     allow_destroy: true,
     reject_if: :all_blank
@@ -24,4 +29,9 @@ class Recipe < ApplicationRecord
   delegate :username, to: :user
 
   scope :latest, -> { order(created_at: :desc) }
+
+  scope :search, -> (query:) {
+    joins(:ingredients)
+    .distinct
+    .where("recipes.title LIKE ? OR ingredients.name LIKE ?", "%#{query}%", "%#{query}%") }
 end

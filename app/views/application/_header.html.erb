@@ -3,6 +3,9 @@
     <div class="left">
       <%= link_to t("home"), root_path %>
     </div>
+    <div class="center">
+      <%= render "searches/search_form" %>
+    </div>
     <div class="right">
       <% if signed_in? %>
           <%= link_to current_user.username, current_user %>
