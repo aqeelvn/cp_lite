@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def avatar(user, size:)
+    image_tag user.avatar.url(size), class: "avatar round-image"
+  end
+
   def follow_button(user)
     if current_user.follows?(user)
       button_to t("unfollow"), [:unfollow, user]

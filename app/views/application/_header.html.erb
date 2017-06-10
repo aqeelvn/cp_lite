@@ -8,7 +8,9 @@
     </div>
     <div class="right">
       <% if signed_in? %>
+          <div class="avatar"><%= avatar current_user, size: :thumb %></div>
           <%= link_to current_user.username, current_user %>
+          <%= link_to t(".create_recipe"), [:new, :my, :recipe] %>
           <%= link_to t("sign_out"), session_path, method: :delete %>
       <% else %>
           <%= link_to t("sign_up"), new_user_path %>

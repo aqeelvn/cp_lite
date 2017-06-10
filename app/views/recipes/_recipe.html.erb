@@ -1,3 +1,11 @@
 <div class="recipe">
-  <%= link_to recipe.title, recipe %>
+  <div class="part image">
+    <%= image_tag recipe.cover_image.url(:thumb) %>
+  </div>
+  <div class="part details">
+    <%= link_to recipe.title, recipe %>
+    <div>
+      <%= recipe.description %>
+    </div>
+  </div>
 </div>

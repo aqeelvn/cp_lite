@@ -1,0 +1,90 @@
+body{
+  background-color: #fafaf5;
+  margin: 0;
+}
+
+.content {
+  background-color: #ffffff;
+  max-width: 680px;
+  width: auto;
+  margin: 0 auto;
+  padding-top: 70px;
+  margin-bottom: 70px;
+}
+
+
+header{
+  margin: 0;
+  min-height: 2em;
+  padding: 10px;
+  border-bottom: 1px solid #ededed;
+
+  div{
+    display: inline-block;
+  }
+  .right{
+    float: right;
+  }
+  .left{
+    float: left;
+  }
+  a {
+    margin-right: 5px;
+  }
+}
+
+.avatar {
+  height: 32px;
+}
+
+.round-image {
+  border-radius: 50%;
+}
+
+.row {
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.profile-header{
+  .avatar {
+    height: 100px;
+    width: 100px;
+  }
+
+  .name{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 2em;
+    padding: 5px 0;
+    font-weight: bold;
+  }
+}
+.recipes {
+  .recipe{
+    background-color: #fafaf5;
+    display: inline-block;
+    width: 32%;
+    min-height: 100px;
+    margin: 2px;
+    margin-bottom: 10px;
+
+    .part {
+      display: inline-block;
+    }
+
+    .details {
+      padding-left: 5px;
+    }
+    .image {
+      float: left;
+
+      img{
+        height: 100px;
+      }
+    }
+  }
+}

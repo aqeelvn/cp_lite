@@ -30,7 +30,7 @@ Rails.application.routes.draw do
 
   resource :session, only: %i(new create destroy)
 
-  resources :users, only: [:new, :create, :show] do
+  resources :users, only: [:new, :create, :show, :update] do
     member do
       post "follow" => "follows#create"
       post "unfollow" => "follows#destroy"

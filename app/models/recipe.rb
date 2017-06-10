@@ -15,7 +15,14 @@ class Recipe < ApplicationRecord
 
   has_one :search_index, dependent: :destroy
 
-  has_attached_file :cover_image, styles: { large:"1024x1024", medium: "300x300>", thumb: "100x100>" }, default_url: ""
+  has_attached_file :cover_image,
+    styles: {
+      large:"1024x1024",
+      medium: "300x300>",
+      thumb: "100x100>"
+    },
+    default_url: "/system/recipes/cover_images/missing-image.png"
+
   validates_attachment_content_type :cover_image, content_type: /\Aimage\/.*\z/
 
   accepts_nested_attributes_for :ingredients,

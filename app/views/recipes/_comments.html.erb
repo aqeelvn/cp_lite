@@ -2,6 +2,7 @@
 <ul>
   <% comments.each do |comment| %>
     <li>
+      <%= image_tag comment.user.avatar.url(:thumb) %>
       <span><%= comment.text %></span>
       <%= link_to t(".remove_comment"), comment, method: :delete %>
     </li>
