@@ -16,12 +16,13 @@
   <% if @recipe.description.present? %>
     <p><%= @recipe.description %></p>
   <% end %>
+  <% cache @recipe do %>
+    <%= render "ingredients", recipe:@recipe %>
+    <%= render "steps", recipe:@recipe %>
+    <%= render "comments", comments:@comments %>
 
-  <%= render "ingredients", recipe:@recipe %>
-  <%= render "steps", recipe:@recipe %>
-  <%= render "comments", comments:@comments %>
-
-  <%= render "comment_form", recipe: @recipe %>
+    <%= render "comment_form", recipe: @recipe %>
+  <% end %>
 
   <% if current_user.owns? @recipe %>
     <%= render "controls", recipe: @recipe %>
