@@ -4,13 +4,14 @@ class Recipe < ApplicationRecord
   validates :ingredients, length: { minimum: 1 }
   validates :steps, length: { minimum: 1 }
 
-  belongs_to :user
+  belongs_to :user, counter_cache: true
 
   has_many :ingredients, dependent: :destroy
   has_many :steps, dependent: :destroy
 
   has_many :comments, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
+  has_many :likes, dependent: :destroy
   has_many :user_activities, as: :target, dependent: :destroy
 
   has_one :search_index, dependent: :destroy

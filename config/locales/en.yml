@@ -39,7 +39,7 @@ en:
 
   users:
     show:
-      users_recipes: "%{username}'s recipes"
+      users_recipes: "%{username}'s recipes (%{recipes_count})"
 
   searches:
     search_form:

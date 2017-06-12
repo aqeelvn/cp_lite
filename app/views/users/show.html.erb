@@ -1,6 +1,10 @@
 <div class="content user-profile">
   <div class="row profile-header">
-    <div><%= link_to avatar(current_user, size: :medium), @user %></div>
+    <div><%= link_to avatar(@user, size: :medium), @user %></div>
+    <div>
+      <span>Followers: <%= @user.followers_count %></span>
+      <span>Followed Users: <%= @user.followed_users_count %></span>
+    </div>
     <div><h1 class="name"><%= current_user.username %></h1></div>
     <% if current_user != @user %>
       <div>
@@ -19,7 +23,7 @@
     </div>
   <% end %>
   <div class="row user-recipes">
-    <h3><%= t(".users_recipes", username: @user.username) %></h3>
+    <h3><%= t(".users_recipes", username: @user.username, recipes_count: @user.recipes_count) %></h3>
     <div class="recipes">
       <%= render @recipes %>
     </div>
