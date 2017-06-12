@@ -1,25 +1,29 @@
-<h1><%= @recipe.title %></h1>
+<div class="content recipe-page">
+  <div class="row">
+    <%= image_tag @recipe.cover_image.url(:large), class: "cover-image" %>
+  </div>
 
-<div>
-  <%= image_tag @recipe.cover_image.url(:medium) %>
+  <div class="row">
+    <h1><%= @recipe.title %></h1>
+  </div>
+
+  <%= link_to @recipe.username, @recipe.user %>
+
+  <%= like_button @recipe %>
+
+  <%= bookmark_button @recipe %>
+
+  <% if @recipe.description.present? %>
+    <p><%= @recipe.description %></p>
+  <% end %>
+
+  <%= render "ingredients", recipe:@recipe %>
+  <%= render "steps", recipe:@recipe %>
+  <%= render "comments", comments:@comments %>
+
+  <%= render "comment_form", recipe: @recipe %>
+
+  <% if current_user.owns? @recipe %>
+    <%= render "controls", recipe: @recipe %>
+  <% end %>
 </div>
-
-<%= link_to @recipe.username, @recipe.user %>
-
-<%= like_button @recipe %>
-
-<%= bookmark_button @recipe %>
-
-<% if @recipe.description.present? %>
-  <p><%= @recipe.description %></p>
-<% end %>
-
-<%= render "ingredients", recipe:@recipe %>
-<%= render "steps", recipe:@recipe %>
-<%= render "comments", comments:@comments %>
-
-<%= render "comment_form", recipe: @recipe %>
-
-<% if current_user.owns? @recipe %>
-  <%= render "controls", recipe: @recipe %>
-<% end %>

@@ -31,6 +31,11 @@ header{
   a {
     margin-right: 5px;
   }
+  nav {
+    div{
+      line-height: 2em;
+    }
+  }
 }
 
 .avatar {
@@ -48,21 +53,6 @@ header{
   margin-bottom: 5px;
 }
 
-.profile-header{
-  .avatar {
-    height: 100px;
-    width: 100px;
-  }
-
-  .name{
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    font-size: 2em;
-    padding: 5px 0;
-    font-weight: bold;
-  }
-}
 .recipes {
   .recipe{
     background-color: #fafaf5;
@@ -86,5 +76,31 @@ header{
         height: 100px;
       }
     }
+  }
+}
+
+/* USER PROFILE */
+.user-profile{
+  .profile-header{
+    .avatar {
+      height: 100px;
+      width: 100px;
+    }
+
+    .name{
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-size: 2em;
+      padding: 5px 0;
+      font-weight: bold;
+    }
+  }
+}
+
+
+.recipe-page{
+  .cover-image{
+    width: 100%;
   }
 }
