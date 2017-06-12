@@ -5,19 +5,13 @@ class UserActivityPublisher
     @target = target
   end
 
-  def run
+  def run(delay: true)
     return if user.followers.none?
 
-    activity = get_activity
-
-    if activity.new_record?
-      begin
-        activity.save
-      rescue ActiveRecord::RecordNotUnique
-        return
-      end
-
-      publish_activity(activity)
+    if delay
+      run_delayed_job
+    else
+      run_publish_activity
     end
   end
 
@@ -33,6 +27,24 @@ class UserActivityPublisher
   private_constant :ACTIVITY_MAP
 
   attr_reader :user, :target, :action
+
+  def run_delayed_job
+    PublishActivityJob.perform_later(user: user, action: action, target: target)
+  end
+
+  def run_publish_activity
+    activity = get_activity
+
+    if activity.new_record?
+      begin
+        activity.save
+      rescue ActiveRecord::RecordNotUnique
+        return
+      end
+
+      publish_activity(activity)
+    end
+  end
 
   def activity_class
     ACTIVITY_MAP.fetch(action.to_sym)
