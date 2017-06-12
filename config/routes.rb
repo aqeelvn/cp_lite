@@ -1,5 +1,6 @@
 require "monban/constraints/signed_in"
 require "monban/constraints/signed_out"
+require "resque/server"
 
 Rails.application.routes.draw do
   constraints Monban::Constraints::SignedOut.new do
@@ -8,6 +9,10 @@ Rails.application.routes.draw do
 
   constraints Monban::Constraints::SignedIn.new do
     root to: "dashboards#show"
+  end
+
+  constraints ->(_request) { Rails.env.development? } do
+    mount Resque::Server, at: '/jobs'
   end
 
   resource :search, only: %i(show)

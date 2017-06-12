@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170609064339) do
+ActiveRecord::Schema.define(version: 20170612045035) do
 
   create_table "bookmarks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "user_id"
@@ -80,6 +80,8 @@ ActiveRecord::Schema.define(version: 20170609064339) do
     t.string "cover_image_content_type"
     t.integer "cover_image_file_size"
     t.datetime "cover_image_updated_at"
+    t.integer "comments_count", default: 0, null: false
+    t.integer "bookmarks_count", default: 0, null: false
     t.index ["user_id"], name: "index_recipes_on_user_id"
   end
 

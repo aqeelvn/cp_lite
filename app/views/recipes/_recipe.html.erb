@@ -5,6 +5,10 @@
   <div class="part details">
     <%= link_to recipe.title, recipe %>
     <div>
+      <span>Comments: <%= recipe.comments_count %></span>
+      <span>Bookmarks: <%= recipe.bookmarks_count %></span>
+    </div>
+    <div>
       <%= recipe.description %>
     </div>
   </div>
