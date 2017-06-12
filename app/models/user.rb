@@ -8,12 +8,14 @@ class User < ActiveRecord::Base
   has_many :followed_user_relationships,
     foreign_key: :follower_id,
     class_name: "Follow",
+    counter_cache: :followed_users_count,
     dependent: :destroy
   has_many :followed_users, through: :followed_user_relationships
 
   has_many :follower_relationships,
     foreign_key: :followed_user_id,
     class_name: "Follow",
+    counter_cache: :followers_count,
     dependent: :destroy
   has_many :followers, through: :follower_relationships
 
