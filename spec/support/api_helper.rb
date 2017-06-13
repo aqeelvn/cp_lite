@@ -1,13 +1,21 @@
 require "rails_helper"
 
 module ApiHelper
-  def api_post(path, params:nil, user:nil)
+  def api_request(method, path, params:nil, user:nil)
     headers = {}
 
     if user.present?
       headers = { "X-Access-Token": user.access_token.token }
     end
-    post "/api/v1#{path}", params: params, headers: headers
+    method.call("/api/v1#{path}", params: params, headers: headers)
+  end
+
+  def api_post(path, params:nil, user:nil)
+    api_request(method(:post), path, params: params, user: user)
+  end
+
+  def api_get(path, params:nil, user:nil)
+    api_request(method(:get), path, params: params, user: user)
   end
 end
 

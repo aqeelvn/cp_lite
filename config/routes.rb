@@ -50,7 +50,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :users, only: %i(create)
       resource :session, only: %i(create)
-      resources :recipes, only: %i(show) do
+      resources :recipes, only: %i(index) do
         member do
           post "like" => "likes#create"
         end
@@ -64,6 +64,7 @@ Rails.application.routes.draw do
           post "remove_bookmark" => "bookmarks#destroy"
         end
       end
+      resource :search, only: %i(show)
     end
   end
 end
