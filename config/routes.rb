@@ -53,6 +53,7 @@ Rails.application.routes.draw do
       resources :recipes, only: %i(index) do
         member do
           post "like" => "likes#create"
+          post "unlike" => "likes#destroy"
         end
 
         member do

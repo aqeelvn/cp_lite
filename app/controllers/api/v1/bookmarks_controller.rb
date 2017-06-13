@@ -10,7 +10,7 @@ module Api
 
       def destroy
         current_user.remove_bookmark(recipe)
-        render json:nil, status: :ok
+        head :ok
       end
 
       private

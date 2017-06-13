@@ -7,7 +7,7 @@ module Api
         if sign_in(user)
           render json: { :access_token => access_token(user) }, status: :created
         else
-          render json:nil, status: :unauthorized
+          head :unauthorized
         end
       end
 

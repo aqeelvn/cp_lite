@@ -18,4 +18,14 @@ RSpec.describe "Like", :type => :request do
 
     expect(response).to have_http_status(:unauthorized)
   end
+
+  it "unlikes a recipe" do
+    user = create(:user, :with_token)
+    recipe = create(:recipe, user: create(:user))
+    create(:like, recipe: recipe, user: user)
+
+    api_post "/recipes/#{recipe.id}/unlike", user: user
+
+    expect(response).to have_http_status(:ok)
+  end
 end
