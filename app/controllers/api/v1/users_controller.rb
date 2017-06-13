@@ -2,7 +2,12 @@ module Api
   module V1
     class UsersController < BaseController
       def create
-        render json: create_user, status: :created
+        user = create_user
+        if user.valid?
+          render json: user, status: :created
+        else
+          render json: user.errors, status: :unprocessable_entity
+        end
       end
 
       private

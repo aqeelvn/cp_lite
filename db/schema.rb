@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170612052250) do
+ActiveRecord::Schema.define(version: 20170613045110) do
+
+  create_table "access_tokens", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "user_id"
+    t.string "token", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["token"], name: "index_access_tokens_on_token", unique: true
+    t.index ["user_id"], name: "index_access_tokens_on_user_id"
+  end
 
   create_table "bookmarks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "user_id"
@@ -131,6 +140,7 @@ ActiveRecord::Schema.define(version: 20170612052250) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "access_tokens", "users"
   add_foreign_key "bookmarks", "recipes"
   add_foreign_key "bookmarks", "users"
   add_foreign_key "comments", "recipes"
