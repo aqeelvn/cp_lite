@@ -5,8 +5,8 @@ RSpec.describe "Session", :type => :request do
       user = create(:user)
       access_token = create(:access_token, user: user)
 
-      post "/api/v1/session",
-          :params => { :user => {
+      api_post "/session",
+          :params => { :session => {
               :email => user.email,
               :password => user.password_digest
           }}
@@ -18,8 +18,8 @@ RSpec.describe "Session", :type => :request do
       user = create(:user)
       access_token = create(:access_token, user: user)
 
-      post "/api/v1/session",
-          :params => { :user => {
+      api_post "/session",
+          :params => { :session => {
               :email => user.email,
               :password => "invalid"
           }}

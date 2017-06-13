@@ -75,4 +75,8 @@ class User < ActiveRecord::Base
   def remove_bookmark(recipe)
     bookmarked_recipes.delete(recipe)
   end
+
+  def access_token
+    access_tokens.first
+  end
 end

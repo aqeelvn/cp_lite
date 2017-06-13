@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe "User", :type => :request do
   it "creates a user" do
-      post "/api/v1/users",
+      api_post "/users",
           :params => { :user => {
               :username => "test",
               :email => "test@example.com",
@@ -14,7 +14,7 @@ RSpec.describe "User", :type => :request do
   end
 
   it "fails to create user without username" do
-      post "/api/v1/users",
+      api_post "/users",
           :params => { :user => {
               :email => "test@example.com",
               :password => "testpassword"
