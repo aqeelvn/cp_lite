@@ -54,6 +54,15 @@ Rails.application.routes.draw do
         member do
           post "like" => "likes#create"
         end
+
+        member do
+          post "comment" => "comments#create"
+        end
+
+        member do
+          post "bookmark" => "bookmarks#create"
+          post "remove_bookmark" => "bookmarks#destroy"
+        end
       end
     end
   end

@@ -1,7 +1,7 @@
 module Api
   module V1
     class LikesController < BaseController
-      before_action :required_login
+      before_action :require_login
       def create
         like = RecipeLiking.new(user: current_user, recipe:recipe).run
         render json:like, status: :created

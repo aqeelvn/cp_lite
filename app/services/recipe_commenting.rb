@@ -6,10 +6,10 @@ class RecipeCommenting
   end
 
   def run
-    comment = create_comment
-
-    if comment.persisted?
-      publish_activity(comment)
+    create_comment.tap do |comment|
+      if comment.persisted?
+        publish_activity(comment)
+      end
     end
   end
 

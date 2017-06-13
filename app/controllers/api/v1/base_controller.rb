@@ -21,7 +21,7 @@ module Api
         !current_user.nil?
       end
 
-      def required_login
+      def require_login
         unless logged_in?
           render json:nil, status: :unauthorized
         end

@@ -5,10 +5,10 @@ class RecipeBookmarking
   end
 
   def run
-    bookmark = create_bookmark
-
-    if bookmark.persisted?
-      publish_activity
+    create_bookmark.tap do |bookmark|
+      if bookmark.persisted?
+        publish_activity
+      end
     end
   end
 
