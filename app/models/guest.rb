@@ -14,4 +14,8 @@ class Guest
   def bookmarked?(_)
     false
   end
+
+  def nil?
+    true
+  end
 end

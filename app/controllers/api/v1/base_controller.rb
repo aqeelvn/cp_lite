@@ -14,7 +14,17 @@ module Api
       end
 
       def access_token
-        AccessToken.find(token: token) || GuestToken.new
+        AccessToken.find_by(token: token) || GuestToken.new
+      end
+
+      def logged_in?
+        !current_user.nil?
+      end
+
+      def required_login
+        unless logged_in?
+          render json:nil, status: :unauthorized
+        end
       end
     end
   end

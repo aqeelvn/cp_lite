@@ -50,6 +50,11 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :users, only: %i(create)
       resource :session, only: %i(create)
+      resources :recipes, only: %i(show) do
+        member do
+          post "like" => "likes#create"
+        end
+      end
     end
   end
 end

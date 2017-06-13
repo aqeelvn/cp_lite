@@ -2,10 +2,12 @@ require "rails_helper"
 
 module ApiHelper
   def api_post(path, params:nil, user:nil)
+    headers = {}
+
     if user.present?
-      header "X-Access-Token", user.access_token.token
+      headers = { "X-Access-Token": user.access_token.token }
     end
-    post "/api/v1#{path}", params: params
+    post "/api/v1#{path}", params: params, headers: headers
   end
 end
 

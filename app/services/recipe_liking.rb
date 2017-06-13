@@ -5,10 +5,10 @@ class RecipeLiking
   end
 
   def run
-    like = create_like
-
-    if like.persisted?
-      publish_activity
+    create_like.tap do |like|
+      if like.persisted?
+        publish_activity
+      end
     end
   end
 
