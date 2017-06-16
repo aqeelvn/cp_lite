@@ -17,6 +17,10 @@ module ApiHelper
   def api_get(path, params:nil, user:nil)
     api_request(method(:get), path, params: params, user: user)
   end
+
+  def api_delete(path, params:nil, user:nil)
+    api_request(method(:delete), path, params: params, user: user)
+  end
 end
 
 RSpec.configure do |config|

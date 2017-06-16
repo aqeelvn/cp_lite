@@ -56,9 +56,7 @@ Rails.application.routes.draw do
           post "unlike" => "likes#destroy"
         end
 
-        member do
-          post "comment" => "comments#create"
-        end
+        resources :comments, only: %i(create)
 
         member do
           post "bookmark" => "bookmarks#create"
@@ -66,6 +64,7 @@ Rails.application.routes.draw do
         end
       end
       resource :search, only: %i(show)
+      resources :comments, only: %i(destroy)
     end
   end
 end

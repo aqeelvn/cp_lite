@@ -8,6 +8,11 @@ module Api
         render json: comment, status: :created
       end
 
+      def destroy
+        comment.destroy
+        head :ok
+      end
+
       private
 
       def text
@@ -18,8 +23,12 @@ module Api
         Recipe.find(recipe_id)
       end
 
+      def comment
+        Comment.find(params[:id])
+      end
+
       def recipe_id
-        params[:id]
+        params[:recipe_id]
       end
     end
   end
