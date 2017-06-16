@@ -18,6 +18,10 @@ module ApiHelper
     api_request(method(:get), path, params: params, user: user)
   end
 
+  def api_patch(path, params:nil, user:nil)
+    api_request(method(:patch), path, params: params, user: user)
+  end
+
   def api_delete(path, params:nil, user:nil)
     api_request(method(:delete), path, params: params, user: user)
   end

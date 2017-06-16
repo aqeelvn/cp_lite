@@ -74,4 +74,44 @@ RSpec.describe "Recipe", :type => :request do
 
     expect(response).to have_http_status(:unprocessable_entity)
   end
+
+  it "updates a recipe" do
+    author = create(:user, :with_token)
+    recipe = create(:recipe, user: author, title: "First Title")
+
+    recipe_params = {
+      title: "Second Title"
+    }
+    api_patch "/recipes/#{recipe.id}", params: { recipe: recipe_params }, user: author
+    updated_recipe = Recipe.find(recipe.id)
+
+    expect(response).to have_http_status(:no_content)
+    expect(updated_recipe.title).to eq("Second Title")
+  end
+
+  it "cannot override validation through update" do
+    author = create(:user, :with_token)
+    recipe = create(:recipe, user: author)
+    recipe_params = {
+      title: nil
+    }
+    api_patch "/recipes/#{recipe.id}", params: { recipe: recipe_params }, user: author
+    expect(response).to have_http_status(:bad_request)
+  end
+
+  it "can delete a recipe by author" do
+    author = create(:user, :with_token)
+    recipe = create(:recipe, user: author)
+
+    api_delete "/recipes/#{recipe.id}", user: author
+    expect(response).to have_http_status(:ok)
+  end
+
+  it "can does not allow delete by non-author" do
+    recipe = create(:recipe, user: create(:user, :with_token))
+    another_user = create(:user, :with_token)
+
+    api_delete "/recipes/#{recipe.id}", user: another_user
+    expect(response).to have_http_status(:unauthorized)
+  end
 end
